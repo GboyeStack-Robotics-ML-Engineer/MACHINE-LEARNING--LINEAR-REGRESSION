@@ -2,6 +2,7 @@ from numpy.core.fromnumeric import size
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
 def get_accuracy_through_rsquared_error(y_pred,y_train,mean_y):
     num=0
     denum=0
@@ -23,13 +24,16 @@ def get_grad_inter(x_train,y_train):
     gradi=num/denum
     interc=mean_y_train-(gradi*mean_x_train)
     return gradi,interc,mean_x_train,mean_y_train
+    
 def get_data(data,x,y,size):
     import math
     x_tr=x[:math.floor((int(size)/100)*len(x))]
     y_tr=y[:math.floor((int(size)/100)*len(y))]
     x_te=x_tr
     return x_tr,y_tr,x_te
+    
 data=pd.read_csv(open(r'C:\Users\SAMUEL ADEGBOYEGA\Desktop/Book1.csv'))
+
 def Linear_fit(data,x,y,size):
     x_train,y_train,x_test=get_data(data,x=x,y=y,size=size)
     grad,intercept,mean_x,mean_y=get_grad_inter(x_train,y_train)
@@ -56,6 +60,7 @@ def Linear_fit(data,x,y,size):
     plt.legend()
     plt.show()
     return df,accuracy,grad,intercept,mean_x,mean_y,x_train,y_train,x_test,y_pred
+    
 Linear_fit(data=data,x=data['x'],y=data['y'],size=50)
 
 
